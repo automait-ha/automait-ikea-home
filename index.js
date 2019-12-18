@@ -28,6 +28,9 @@ IkeaHome.prototype.connect = async function () {
       this.devices[device.instanceId] = device
       this.logger.info('IkeaHome: device updated:', device)
     })
+    this.client.on('error', e => {
+      this.logger.error('IkeaHome: ERROR:', e, e.code)
+    })
     .observeDevices()
     // Every 6 hours
     setInterval(() => {
